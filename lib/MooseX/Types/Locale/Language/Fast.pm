@@ -112,7 +112,6 @@ MooseX::Types::Locale::Language::Fast - Locale::Language related constraints for
     print $foo->code;   # 'JA' (not 'ja')
     print $foo->name;   # 'JAPANESE' (not 'Japanese')
 
-
 =head1 DESCRIPTION
 
 This module packages several L<Moose::Util::TypeConstraints>,
@@ -168,7 +167,6 @@ When reporting bugs, if possible,
 please add as small a sample as you can make of the code
 that produces the bug.
 And of course, suggestions and patches are welcome.
-
 
 =head1 SUPPORT
 

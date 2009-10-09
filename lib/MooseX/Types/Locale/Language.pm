@@ -144,7 +144,6 @@ MooseX::Types::Locale::Language - Locale::Language related constraints and coerc
     print $foo->code;   # 'ja'
     print $foo->name;   # 'Japanese'
 
-
 =head1 DESCRIPTION
 
 This module packages several L<Moose::Util::TypeConstraints> with coercions,
@@ -201,7 +200,6 @@ When reporting bugs, if possible,
 please add as small a sample as you can make of the code
 that produces the bug.
 And of course, suggestions and patches are welcome.
-
 
 =head1 SUPPORT
 
