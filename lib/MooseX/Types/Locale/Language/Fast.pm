@@ -172,7 +172,7 @@ And of course, suggestions and patches are welcome.
 
 You can find documentation for this module with the C<perldoc> command.
 
-    perldoc MooseX::Types::Locale::Language
+    perldoc MooseX::Types::Locale::Language::Fast
 
 You can also look for information at:
 
