@@ -5,6 +5,14 @@ This file documents the revision history for Perl distribution
 VERSION HISTORY
 ===============
 
+0.001 : Released on 2009-10-10 (JST)
+------------------------------------
+
+### `Changes`
+
+-   Modified version notation.
+
+
 0.000 : Released on 2009-10-10 (JST)
 ------------------------------------
 
@@ -55,13 +63,14 @@ Version notation
 
 -   Added several feature(s)
 -   Improved any feature(s)
--   ...
-
-### rrr : Revision number (in minor version, on demand)
 -   Fixed bug(s)
 -   Improved test(s)
 -   Updated document(s)
 -   ...
+
+### rrr : Revision number (in minor version, on demand)
+
+-   A developer release
 
 
 Document format
