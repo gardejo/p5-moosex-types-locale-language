@@ -1,0 +1,73 @@
+This file documents the revision history for Perl distribution
+"MooseX-Types-Locale-Language".
+
+
+VERSION HISTORY
+===============
+
+0.000 : Released on 2009-10-09 (JST)
+------------------------------------
+
+Initial version.
+
+### Features
+
+#### `MooseX::Types::Locale::Language`
+
+-   Implemented `MooseX::Types::Locale::Language`, which packages
+    several `Moose::Util::TypeConstraints` with coercions,
+    designed to work with the values of `Locale::Language`.
+
+-   Exported function name is `LanguageCode` and `LanguageName`.
+
+#### `MooseX::Types::Locale::Language::Fast`
+
+-   Also implemented `MooseX::Types::Locale::Language::Fast`,
+    which provides only constraints, without coercions.
+
+-   Exported function name is same as above.
+
+### Tests
+
+-   Prepared tests for `MooseX::Types::Locale::Language`
+    and `MooseX::Types::Locale::Language::Fast`.
+
+### Documents
+
+-   Prepared minimal documents.
+
+
+META INFORMATION
+================
+
+Version notation
+----------------
+
+    V.vvv_rrr : Released on YYYY-MM-DD
+
+### V  : Major version number
+
+-   Added ambitious feature(s)
+-   Changed in API(s)
+-   ...
+
+### vvv : Minor version number (in major version)
+
+-   Added several feature(s)
+-   Improved any feature(s)
+-   ...
+
+### rrr : Revision number (in minor version, on demand)
+-   Fixed bug(s)
+-   Improved test(s)
+-   Updated document(s)
+-   ...
+
+
+Document format
+---------------
+
+This `Changes` file was formatted in Markdown.
+
+    $ perl -MText::Markdown -MFile::Slurp -e \\
+      'print (Text::Markdown->new->markdown(scalar read_file(q{Changes})));'
