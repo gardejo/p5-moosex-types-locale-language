@@ -8,7 +8,13 @@ VERSION HISTORY
 0.001 : Released on 2009-10-10 (JST)
 ------------------------------------
 
-### `Changes`
+### Documents
+
+#### `MooseX::Types::Locale::Language` and `MooseX::Types::Locale::Language::Fast`
+
+-   Added INCOMPATIBILITIES, BUGS AND LIMITATIONS, and SUPPORT sections
+
+#### `Changes`
 
 -   Modified version notation.
 
