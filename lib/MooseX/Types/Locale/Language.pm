@@ -105,6 +105,8 @@ __END__
 # POD
 # ****************************************************************
 
+=pod
+
 =head1 NAME
 
 MooseX::Types::Locale::Language - Locale::Language related constraints and coercions for Moose
