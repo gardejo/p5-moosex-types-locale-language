@@ -2,7 +2,7 @@ package MooseX::Types::Locale::Language::Fast;
 
 
 # ****************************************************************
-# general dependence(-ies)
+# general dependency(-ies)
 # ****************************************************************
 
 use 5.008_001;
