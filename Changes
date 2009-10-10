@@ -5,6 +5,24 @@ This file documents the revision history for Perl distribution
 VERSION HISTORY
 ===============
 
+0.002 : Released on 2009-10-10 (JST)
+------------------------------------
+
+### Tests
+
+-   added several author tests.
+
+### Documents
+
+#### `MooseX::Types::Locale::Language` and `MooseX::Types::Locale::Language::Fast`
+
+-   fixed SYNOPSIS section.
+
+#### `README`
+
+-   changed format from POD into plain text.
+
+
 0.001 : Released on 2009-10-10 (JST)
 ------------------------------------
 
