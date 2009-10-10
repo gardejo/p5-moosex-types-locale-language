@@ -53,7 +53,7 @@ build_requires  'Module::Load'          => '0';     # > perl 5.009_004
 # ================================================================
 use_test_base;
   tests         't/*.t';
-# author_tests  'xt';
+  author_tests  'xt';
 
 # ================================================================
 # installation
