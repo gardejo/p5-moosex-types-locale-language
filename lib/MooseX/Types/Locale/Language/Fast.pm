@@ -87,7 +87,7 @@ MooseX::Types::Locale::Language::Fast - Locale::Language related constraints for
         package Foo;
 
         use Moose;
-        use MooseX::Types::Locale qw(
+        use MooseX::Types::Locale::Language qw(
             LanguageCode
             LanguageName
         );
