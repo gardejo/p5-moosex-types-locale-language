@@ -23,7 +23,7 @@ resources (
     homepage
         => 'http://github.com/gardejo/p5-moosex-types-locale-language',
 );
-# no_index directory => 'examples';
+no_index directory => 'examples';
 # no_index directory => 'extlib';
 
 # ================================================================
