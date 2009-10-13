@@ -1,26 +1,60 @@
 This file documents the revision history for Perl distribution
-"MooseX-Types-Locale-Language".
+`MooseX-Types-Locale-Language`.
 
 
 VERSION HISTORY
 ===============
+
+0.003 : Released on 2009-10-14 (JST)
+------------------------------------
+
+### Features
+
+#### `MooseX::Types::Locale::Language` and `MooseX::Types::Locale::Language::Fast`
+
+-   Added `Alpha2Locale` subtype.
+    This is alias of existent subtype `LanguageCode`.
+
+-   Added verbose `use strict` and `use warnings` sentences
+    to avoid kwalitee problems.
+
+### Tests
+
+-   Fixed problem that t/10_fast.t had ran
+    `Test::MooseX::Types::Locale::Language`
+    (by right, the test must run
+    `Test::MooseX::Types::Locale::Language::Fast`).
+
+-   Added coverage checking scripts `coverage.sh`
+    (and `coverage.bat` for MS Windows).
+
+-   Refactored several methods on test classes.
+
+### Documents
+
+#### `MooseX::Types::Locale::Language` and `MooseX::Types::Locale::Language::Fast`
+
+-   Handled added feature (added documentation of `Alpha2Locale`).
+
+-   Prepared minimal examples.
+
 
 0.002 : Released on 2009-10-10 (JST)
 ------------------------------------
 
 ### Tests
 
--   added several author tests.
+-   Added several author tests.
 
 ### Documents
 
 #### `MooseX::Types::Locale::Language` and `MooseX::Types::Locale::Language::Fast`
 
--   fixed SYNOPSIS section.
+-   Fixed SYNOPSIS section.
 
 #### `README`
 
--   changed format from POD into plain text.
+-   Changed format from POD into plain text.
 
 
 0.001 : Released on 2009-10-10 (JST)
@@ -46,8 +80,8 @@ Initial version.
 
 #### `MooseX::Types::Locale::Language`
 
--   Implemented `MooseX::Types::Locale::Language`, which packages
-    several `Moose::Util::TypeConstraints` with coercions,
+-   Implemented `MooseX::Types::Locale::Language`,
+    which packages several `Moose::Util::TypeConstraints` with coercions,
     designed to work with the values of `Locale::Language`.
 
 -   Exported function name is `LanguageCode` and `LanguageName`.
