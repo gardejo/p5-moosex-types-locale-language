@@ -11,3 +11,4 @@ MANIFEST*
 !MANIFEST.SKIP
 MooseX-Types-Locale-Language-*
 *.bs
+cover_db
