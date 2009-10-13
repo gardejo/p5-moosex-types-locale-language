@@ -12,7 +12,7 @@ VERSION HISTORY
 
 #### `MooseX::Types::Locale::Language` and `MooseX::Types::Locale::Language::Fast`
 
--   Added `Alpha2Locale` subtype.
+-   Added `Alpha2Language` subtype.
     This is alias of existent subtype `LanguageCode`.
 
 -   Added verbose `use strict` and `use warnings` sentences
