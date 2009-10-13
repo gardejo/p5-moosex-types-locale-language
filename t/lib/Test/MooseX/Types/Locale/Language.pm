@@ -36,22 +36,25 @@ use Test::More;
     use Moose;
     use MooseX::Types::Locale::Language qw(
         LanguageCode
+        Alpha2Language
         LanguageName
     );
+    # Alpha3Language, BibliographicLanguage, TerminologyLanguage
 
     use namespace::clean -except => 'meta';
 
-    has 'code' => (
-        is          => 'rw',
-        isa         => LanguageCode,
-        coerce      => 1,
-    );
-
-    has 'name' => (
-        is          => 'rw',
-        isa         => LanguageName,
-        coerce      => 1,
-    );
+    has 'code'
+        => ( is => 'rw', isa => LanguageCode,          coerce => 1);
+    has 'alpha2'
+        => ( is => 'rw', isa => Alpha2Language,        coerce => 1);
+    # has 'alpha3'
+    #     => ( is => 'rw', isa => Alpha3Language,        coerce => 1);
+    # has 'bibliographic'
+    #     => ( is => 'rw', isa => BibliographicLanguage, coerce => 1);
+    # has 'terminology'
+    #     => ( is => 'rw', isa => TerminologyLanguage,   coerce => 1);
+    has 'name'
+        => ( is => 'rw', isa => LanguageName,          coerce => 1);
 
     __PACKAGE__->meta->make_immutable;
 }
@@ -69,13 +72,23 @@ sub test_use : Tests(1) {
     return;
 }
 
-sub test_coerce_code : Tests(2) {
+sub test_coerce_code : Tests(3) {
     my $self = shift;
 
     my $mock_instance = $self->mock_instance;
 
-    $self->test_coercion_for_code($mock_instance, 'JA',       'ja'      );
-    $self->test_coercion_for_name($mock_instance, 'JAPANESE', 'Japanese');
+    $self->test_coercion_for
+        ('code',          $mock_instance, 'JA',       'ja');
+    $self->test_coercion_for
+        ('alpha2',        $mock_instance, 'JA',       'ja');
+    # $self->test_coercion_for
+    #     ('alpha3',        $mock_instance, 'JPN',      'jpn');
+    # $self->test_coercion_for
+    #     ('bibliographic', $mock_instance, 'DUT',      'dut');
+    # $self->test_coercion_for
+    #     ('terminology',   $mock_instance, 'NLD',      'nld');
+    $self->test_coercion_for
+        ('name',          $mock_instance, 'JAPANESE', 'Japanese');
 
     return;
 }
@@ -121,12 +134,6 @@ This module tests L<MooseX::Types::Locale::Language>.
 =item * L<Test::MooseX::Types::Locale::Language::Fast>
 
 =back
-
-=head1 VERSION CONTROL
-
-This module is maintained using git.
-You can get the latest version from
-L<git://github.com/gardejo/p5-moosex-types-locale-language.git>.
 
 =head1 AUTHOR
 

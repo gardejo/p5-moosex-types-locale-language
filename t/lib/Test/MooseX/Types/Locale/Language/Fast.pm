@@ -36,20 +36,24 @@ use Test::More;
     use Moose;
     use MooseX::Types::Locale::Language::Fast qw(
         LanguageCode
+        Alpha2Language
         LanguageName
     );
 
     use namespace::clean -except => 'meta';
 
-    has 'code' => (
-        is          => 'rw',
-        isa         => LanguageCode,
-    );
-
-    has 'name' => (
-        is          => 'rw',
-        isa         => LanguageName,
-    );
+    has 'code'
+        => ( is => 'rw', isa => LanguageCode);
+    has 'alpha2'
+        => ( is => 'rw', isa => Alpha2Language);
+    # has 'alpha3'
+    #     => ( is => 'rw', isa => Alpha3Language);
+    # has 'bibliographic'
+    #     => ( is => 'rw', isa => BibliographicLanguage);
+    # has 'terminology'
+    #     => ( is => 'rw', isa => TerminologyLanguage);
+    has 'name'
+        => ( is => 'rw', isa => LanguageName);
 
     __PACKAGE__->meta->make_immutable;
 }
@@ -67,13 +71,23 @@ sub test_use : Tests(1) {
     return;
 }
 
-sub test_coerce_code : Tests(2) {
+sub test_coerce_code : Tests(3) {
     my $self = shift;
 
     my $mock_instance = $self->mock_instance;
 
-    $self->test_coercion_for_code($mock_instance, 'JA');
-    $self->test_coercion_for_name($mock_instance, 'JAPANESE');
+    $self->test_coercion_for
+        ('code',          $mock_instance, 'JA');
+    $self->test_coercion_for
+        ('alpha2',        $mock_instance, 'JA');
+    # $self->test_coercion_for
+    #     ('alpha3',        $mock_instance, 'JPN');
+    # $self->test_coercion_for
+    #     ('bibliographic', $mock_instance, 'DUT');
+    # $self->test_coercion_for
+    #     ('terminology',   $mock_instance, 'NLD');
+    $self->test_coercion_for
+        ('name',          $mock_instance, 'JAPANESE');
 
     return;
 }

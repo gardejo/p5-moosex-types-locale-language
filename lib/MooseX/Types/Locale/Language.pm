@@ -6,15 +6,25 @@ package MooseX::Types::Locale::Language;
 # ****************************************************************
 
 use 5.008_001;
+# MooseX::Types turns strict/warnings pragmas on,
+# however, kwalitee can not detect such mechanism.
+# (Perl::Critic can it, with equivalent_modules parameter)
+use strict;
+use warnings;
+
 use Locale::Language;
 use MooseX::Types::Moose qw(
     Str
 );
 use MooseX::Types (
     -declare => [qw(
-        LanguageName
         LanguageCode
+        Alpha2Language
+        LanguageName
     )],
+    # (ISO 639-2 three letter codes comming soon...)
+    # BibliographicLanguage = Alpha3Language
+    # TerminologyLanguage
 );
 
 
@@ -29,7 +39,7 @@ use namespace::clean;
 # public class variable(s)
 # ****************************************************************
 
-our $VERSION = "0.002";
+our $VERSION = "0.003";
 
 
 # ****************************************************************
@@ -37,12 +47,18 @@ our $VERSION = "0.002";
 # ****************************************************************
 
 # Because language2code($_) cannot coerce 'japanese' to 'Japanese'.
-my %language2code;
-@language2code{ all_language_names() } = ();
+my %alpha2;
+@alpha2{ all_language_codes() } = ();
+
+# my %bibliographic;
+# @bibliographic{ all_language_codes(LOCALE_CODE_BIBLIOGRAPHIC) } = ();
+
+# my %terminology;
+# @terminology{ all_language_codes(LOCALE_CODE_TERMINOLOGY) } = ();
 
 # Because code2language($_) cannot coerce 'JA' to 'ja'.
-my %code2language;
-@code2language{ all_language_codes() } = ();
+my %name;
+@name{ all_language_names() } = ();
 
 
 # ****************************************************************
@@ -50,36 +66,83 @@ my %code2language;
 # ****************************************************************
 
 # ----------------------------------------------------------------
-# language code as defined in ISO 639-1
+# language code as defined in ISO 639-1 (alpha-2)
 # ----------------------------------------------------------------
-subtype LanguageCode,
-    as Str,
-        where {
-            exists $code2language{$_};
-        },
-        message {
-            "Validation failed for code failed with value ($_) because: " .
-            "Specified language code does not exist in ISO 639-1";
-        };
+foreach my $subtype (LanguageCode, Alpha2Language) {
+    subtype $subtype,
+        as Str,
+            where {
+                exists $alpha2{$_};
+            },
+            message {
+                "Validation failed for code failed with value ($_) because: " .
+                "Specified language code does not exist in ISO 639-1";
+            };
 
-coerce LanguageCode,
-    from Str,
-        via {
-            # Converts 'EN' into 'en'.
-            return lc $_;
-        };
+    coerce $subtype,
+        from Str,
+            via {
+                # - Converts 'EN' into 'en'.
+                # - ISO 639 recommended lower-case.
+                return lc $_;
+            };
+}
+
+# # ----------------------------------------------------------------
+# # language code as defined in ISO 639-2 (alpha-3 bibliographic)
+# # ----------------------------------------------------------------
+# foreach my $subtype (Alpha3Language, BibliographicLanguage) {
+#     subtype $subtype,
+#         as Str,
+#             where {
+#                 exists $bibliographic{$_};
+#             },
+#             message {
+#                 "Validation failed for code failed with value ($_) because: " .
+#                 "Specified language code does not exist in ISO 639-2 " .
+#                 "(bibliographic)";
+#             };
+# 
+#     coerce $subtype,
+#         from Str,
+#             via {
+#                 # Converts 'ENG' into 'eng'.
+#                 return lc $_;
+#             };
+# }
+
+# # ----------------------------------------------------------------
+# # language code as defined in ISO 639-2 (alpha-3 terminology)
+# # ----------------------------------------------------------------
+# subtype TerminologyLanguage,
+#     as Str,
+#         where {
+#             exists $terminology{$_};
+#         },
+#         message {
+#             "Validation failed for code failed with value ($_) because: " .
+#             "Specified language code does not exist in ISO 639-2 " .
+#             "(terminology)";
+#         };
+# 
+# coerce TerminologyLanguage,
+#     from Str,
+#         via {
+#             # Converts 'ENG' into 'eng'.
+#             return lc $_;
+#         };
 
 # ----------------------------------------------------------------
-# language name as defined in ISO 639-1
+# language name as defined in ISO 639
 # ----------------------------------------------------------------
 subtype LanguageName,
     as Str,
         where {
-            exists $language2code{$_};
+            exists $name{$_};
         },
         message {
             "Validation failed for name failed with value ($_) because: " .
-            "Specified language name does not exist in ISO 639-1";
+            "Specified language name does not exist in ISO 639";
         };
 
 coerce LanguageName,
@@ -122,17 +185,10 @@ MooseX::Types::Locale::Language - Locale::Language related constraints and coerc
             LanguageName
         );
 
-        has 'code' => (
-            isa         => LanguageCode,
-            is          => 'rw',
-            coerce      => 1,
-        );
-
-        has 'name' => (
-            isa         => LanguageName,
-            is          => 'rw',
-            coerce      => 1,
-        );
+        has 'code'
+            => ( isa => LanguageCode, is => 'rw', coerce => 1 );
+        has 'name'
+            => ( isa => LanguageName, is => 'rw', coerce => 1 );
 
         __PACKAGE__->meta->make_immutable;
     }
@@ -153,11 +209,16 @@ designed to work with the values of L<Locale::Language>.
 
 =over 4
 
-=item C<LanguageCode>
+=item C<Alpha2Language>
 
-A subtype of C<Str>, which should be defined in ISO 639-1 language code.
+A subtype of C<Str>, which should be defined in language code of ISO 639-1
+alpha-2.
 If you turned C<coerce> on, C<Str> will be lower-case.
 For example, C<'JA'> will convert to C<'ja'>.
+
+=item C<LanguageCode>
+
+Alias of C<Alpha2Language>.
 
 =item C<LanguageName>
 
@@ -182,6 +243,23 @@ For example, C<'JAPANESE'> will convert to C<'Japanese'>.
 =head1 INCOMPATIBILITIES
 
 None reported.
+
+=head1 TO DO
+
+=over 4
+
+=item * I will send patch on L<Locale::Language> to NEILB,
+        to solve RT #11730. (The patch supports ISO 639-2 alpha-3
+        bibliographic/terminology codes).
+        cf. L<http://rt.cpan.org/Public/Bug/Display.html?id=11730>
+
+=item * By doing this, this module will support ISO 639-2 alpha-3
+        bibliographic/terminology codes.
+
+=item * As necessary, L<Locale::Language> and this module may support
+        ISO 639-3 alpha-3 codes (comprehensive coverage of language).
+
+=back
 
 =head1 BUGS AND LIMITATIONS
 

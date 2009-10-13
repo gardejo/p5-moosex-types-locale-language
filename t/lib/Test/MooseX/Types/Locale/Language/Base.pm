@@ -30,7 +30,7 @@ use Test::More;
 # test(s)
 # ****************************************************************
 
-sub test_new : Tests(3) {
+sub test_new : Tests(4) {
     my $self = shift;
 
     my $mock_class = $self->mock_class;
@@ -50,8 +50,12 @@ sub test_constraint {
     my ($self, $mock_class) = @_;
 
     ok $mock_class->new(
-        code => 'ja',
-        name => 'Japanese',
+        code            => 'ja',
+        alpha2          => 'ja',
+        # alpha3        => 'jpn',
+        # bibliographic => 'jpn',
+        # terminology   => 'jpn',
+        name            => 'Japanese',
     ) => 'Instantiated object using export types';
 
     return;
@@ -60,31 +64,21 @@ sub test_constraint {
 sub test_exceptions_of_constraints {
     my ($self, $mock_class) = @_;
 
-    throws_ok {
-        $mock_class->new( code => 'junk!!' )
-    } qr{language code .+ ISO 639-1},
-        => 'Constraint of code';
+    my %alignment = (
+        code            => qr{language code .+ ISO 639-1},
+        alpha2          => qr{language code .+ ISO 639-1},
+        # alpha3        => qr{language code .+ ISO 639-2},
+        # bibliographic => qr{language code .+ ISO 639-2},
+        # terminology   => qr{language code .+ ISO 639-2},
+        name            => qr{language name .+ ISO 639},
+    );
 
-    throws_ok {
-        $mock_class->new( name => 'junk!!' )
-    } qr{language name .+ ISO 639-1},
-        => 'Constraint of name';
-
-    return;
-}
-
-sub test_coercion_for_code {
-    my ($self, $mock_instance, $from, $to) = @_;
-
-    $self->_test_coercion_for('code', $mock_instance, $from, $to);
-
-    return;
-}
-
-sub test_coercion_for_name {
-    my ($self, $mock_instance, $from, $to) = @_;
-
-    $self->_test_coercion_for('name', $mock_instance, $from, $to);
+    while (my ($attribute, $message_pattern) = each %alignment) {
+        throws_ok {
+            $mock_class->new( $attribute => 'junk!!' )
+        } $message_pattern,
+            => "Constraint of ($attribute)";
+    }
 
     return;
 }
@@ -106,7 +100,7 @@ sub mock_instance {
     return $mock_class->new(@_);
 }
 
-sub _test_coercion_for {
+sub test_coercion_for {
     my ($self, $attribute, $mock_instance, $from, $to) = @_;
 
     $mock_instance->$attribute($from);

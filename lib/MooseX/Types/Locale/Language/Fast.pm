@@ -6,6 +6,12 @@ package MooseX::Types::Locale::Language::Fast;
 # ****************************************************************
 
 use 5.008_001;
+# MooseX::Types turns strict/warnings pragmas on,
+# however, kwalitee can not detect such mechanism.
+# (Perl::Critic can it, with equivalent_modules parameter)
+use strict;
+use warnings;
+
 use Locale::Language;
 use MooseX::Types::Moose qw(
     Str
@@ -13,8 +19,12 @@ use MooseX::Types::Moose qw(
 use MooseX::Types (
     -declare => [qw(
         LanguageName
+        Alpha2Language
         LanguageCode
     )],
+    # (ISO 639-2/3 three letter codes comming soon...)
+    # BibliographicLanguage = Alpha3Language
+    # TerminologyLanguage
 );
 
 
@@ -29,7 +39,7 @@ use namespace::clean;
 # public class variable(s)
 # ****************************************************************
 
-our $VERSION = "0.002";
+our $VERSION = "0.003";
 
 
 # ****************************************************************
@@ -39,18 +49,50 @@ our $VERSION = "0.002";
 # ----------------------------------------------------------------
 # language code as defined in ISO 639-1
 # ----------------------------------------------------------------
-subtype LanguageCode,
-    as Str,
-        where {
-            code2language($_);
-        },
-        message {
-            "Validation failed for code failed with value ($_) because: " .
-            "Specified language code does not exist in ISO 639-1";
-        };
+foreach my $subtype (LanguageCode, Alpha2Language) {
+    subtype $subtype,
+        as Str,
+            where {
+                code2language($_);
+            },
+            message {
+                "Validation failed for code failed with value ($_) because: " .
+                "Specified language code does not exist in ISO 639-1";
+            };
+}
+
+# # ----------------------------------------------------------------
+# # language code as defined in ISO 639-2 (alpha-3 bibliographic)
+# # ----------------------------------------------------------------
+# foreach my $subtype (Alpha3Language, BibliographicLanguage) {
+#     subtype $subtype,
+#         as Str,
+#             where {
+#                 code2language($_, LOCALE_CODE_BIBLIOGRAPHIC);
+#             },
+#             message {
+#                 "Validation failed for code failed with value ($_) because: " .
+#                 "Specified language code does not exist in ISO 639-2/3 " .
+#                 "(bibliographic)";
+#             };
+# }
+
+# # ----------------------------------------------------------------
+# # language code as defined in ISO 639-2 (alpha-3 terminology)
+# # ----------------------------------------------------------------
+# subtype TerminologyLanguage,
+#     as Str,
+#         where {
+#                 code2language($_, LOCALE_CODE_TERMINOLOGY);
+#         },
+#         message {
+#             "Validation failed for code failed with value ($_) because: " .
+#             "Specified language code does not exist in ISO 639-2/3 " .
+#             "(terminology)";
+#         };
 
 # ----------------------------------------------------------------
-# language name as defined in ISO 639-1
+# language name as defined in ISO 639
 # ----------------------------------------------------------------
 subtype LanguageName,
     as Str,
@@ -59,7 +101,7 @@ subtype LanguageName,
         },
         message {
             "Validation failed for name failed with value ($_) because: " .
-            "Specified language name does not exist in ISO 639-1";
+            "Specified language name does not exist in ISO 639";
         };
 
 
@@ -92,15 +134,10 @@ MooseX::Types::Locale::Language::Fast - Locale::Language related constraints for
             LanguageName
         );
 
-        has 'code' => (
-            isa         => LanguageCode,
-            is          => 'rw',
-        );
-
-        has 'name' => (
-            isa         => LanguageName,
-            is          => 'rw',
-        );
+        has 'code'
+            => ( isa => LanguageCode, is => 'rw' );
+        has 'name'
+            => ( isa => LanguageName, is => 'rw' );
 
         __PACKAGE__->meta->make_immutable;
     }
@@ -124,9 +161,14 @@ Therefore, it works faster than L<MooseX::Types::Locale::Language>.
 
 =over 4
 
+=item C<Alpha2Language>
+
+A subtype of C<Str>, which should be defined in language code of ISO 639-1
+alpha-2.
+
 =item C<LanguageCode>
 
-A subtype of C<Str>, which should be defined in ISO 639-1 language code.
+Alias of C<Alpha2Language>.
 
 =item C<LanguageName>
 
@@ -145,6 +187,10 @@ A subtype of C<Str>, which should be defined in ISO 639-1 language name.
 =item * L<MooseX::Types::Locale::Country::Fast>
 
 =back
+
+=head1 TO DO
+
+See L<TO DO section of MooseX::Types::Locale::Language|MooseX::Types::Locale::Language/TO_DO>.
 
 =head1 INCOMPATIBILITIES
 
