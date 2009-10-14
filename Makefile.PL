@@ -19,7 +19,8 @@ resources (
     repository
         => 'git://github.com/gardejo/p5-moosex-types-locale-language.git',
     bugtracker
-        => 'http://github.com/gardejo/p5-moosex-types-locale-language/issues',
+        => 'http://rt.cpan.org/Public/Dist/Display.html?Name='
+         . 'MooseX-Types-Locale-Language',
     homepage
         => 'http://github.com/gardejo/p5-moosex-types-locale-language',
 );

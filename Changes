@@ -5,6 +5,14 @@ This file documents the revision history for Perl distribution
 VERSION HISTORY
 ===============
 
+0.004 : Released on 2009-10-XX (JST)
+------------------------------------
+
+### Others
+
+-   Changed the bugtracker URI on Makefile.PL from GitHub to CPAN RT.
+
+
 0.003 : Released on 2009-10-14 (JST)
 ------------------------------------
 
