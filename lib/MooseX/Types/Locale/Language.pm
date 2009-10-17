@@ -7,7 +7,7 @@ package MooseX::Types::Locale::Language;
 
 use 5.008_001;
 # MooseX::Types turns strict/warnings pragmas on,
-# however, kwalitee can not detect such mechanism.
+# however, kwalitee scorer can not detect such mechanism.
 # (Perl::Critic can it, with equivalent_modules parameter)
 use strict;
 use warnings;
@@ -39,7 +39,7 @@ use namespace::clean;
 # public class variable(s)
 # ****************************************************************
 
-our $VERSION = "0.003";
+our $VERSION = "0.0101";
 
 
 # ****************************************************************
@@ -228,6 +228,25 @@ For example, C<'JAPANESE'> will convert to C<'Japanese'>.
 
 =back
 
+=head1 NOTE
+
+=head2 Code conversion is not supported
+
+These coercions is not support code conversion.
+For example, from C<Alpha2Language> to C<LanguageName>.
+
+    has language
+        => ( is => 'rw', isa => LanguageName, coerce => 1 );
+
+    ...
+
+    $foo->language('en');   # does not convert to 'English'
+
+If you want conversion, could you implement an individual language class
+with several attributes?
+
+See see C</examples/complex.pl> in the distribution for more details.
+
 =head1 SEE ALSO
 
 =over 4
@@ -258,6 +277,13 @@ None reported.
 
 =item * As necessary, L<Locale::Language> and this module may support
         ISO 639-3 alpha-3 codes (comprehensive coverage of language).
+
+=item * I may add grammatical aliases of constraints/coercions.
+        For example, C<LanguageAsAlpha2> as existent C<Alpha2Language>.
+
+=item * I may add namespased types.
+        For example, C<'Locale::Language::Alpha2'> as export type
+        C<Alpha2Language>.
 
 =back
 
