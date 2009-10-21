@@ -14,7 +14,7 @@ my $application_root_module = 'lib/MooseX/Types/Locale/Language.pm';
 all_from        $application_root_module;
 
 # supplement
-author          'MORIYA Masaki ("Gardejo") <moriya at ermitejo dot com>';
+author          'MORIYA Masaki ("Gardejo") <moriya@cpan.org>';
 resources (
     repository
         => 'git://github.com/gardejo/p5-moosex-types-locale-language.git',
@@ -91,7 +91,7 @@ Makefile.PL - Makefile builder for MooseX-Types-Locale-Language
 
 =item MORIYA Masaki ("Gardejo")
 
-C<< <moriya at ermitejo dot com> >>,
+C<< <moriya@cpan.org> >>,
 L<http://ttt.ermitejo.com/>
 
 =back
