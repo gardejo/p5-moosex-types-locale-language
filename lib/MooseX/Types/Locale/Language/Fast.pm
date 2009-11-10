@@ -259,7 +259,7 @@ L<http://ttt.ermitejo.com/>
 
 =back
 
-=head1 COPYRIGHT
+=head1 COPYRIGHT AND LICENSE
 
 Copyright (c) 2009 by MORIYA Masaki (a.k.a. "Gardejo"),
 L<http://ttt.ermitejo.com>.
