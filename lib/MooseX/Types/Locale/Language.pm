@@ -343,7 +343,7 @@ L<git://github.com/gardejo/p5-moosex-types-locale-language.git>.
 
 =over 4
 
-=item MORIYA Masaki ("Gardejo")
+=item MORIYA Masaki (a.k.a. "Gardejo")
 
 C<< <moriya@cpan.org> >>,
 L<http://ttt.ermitejo.com/>
@@ -352,7 +352,7 @@ L<http://ttt.ermitejo.com/>
 
 =head1 COPYRIGHT
 
-Copyright (c) 2009 by MORIYA Masaki ("Gardejo"),
+Copyright (c) 2009 by MORIYA Masaki (a.k.a. "Gardejo"),
 L<http://ttt.ermitejo.com>.
 
 This library is free software;
