@@ -67,7 +67,7 @@ use Test::More;
 sub test_use : Tests(1) {
     my $self = shift;
 
-    use_ok 'Test::MooseX::Types::Locale::Language';
+    use_ok 'MooseX::Types::Locale::Language';
 
     return;
 }
