@@ -157,7 +157,7 @@ L<MooseX::Types::Locale::Language::Fast>.
 
 =item MORIYA Masaki (a.k.a. Gardejo)
 
-C<< <moriya@cpan.org> >>,
+C<< <moriya at cpan dot org> >>,
 L<http://ttt.ermitejo.com/>
 
 =back
