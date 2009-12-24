@@ -103,6 +103,6 @@ L<http://ttt.ermitejo.com>.
 
 This library is free software;
 you can redistribute it and/or modify it under the same terms as Perl itself.
-See L<perlgpl> and L<perlartistic>.
+See L<perlgpl|perlgpl> and L<perlartistic|perlartistic>.
 
 =cut
