@@ -14,7 +14,7 @@ my $application_root_module = 'lib/MooseX/Types/Locale/Language.pm';
 all_from        $application_root_module;
 
 # supplement
-author          'MORIYA Masaki (a.k.a. "Gardejo") <moriya@cpan.org>';
+author          'MORIYA Masaki (a.k.a. Gardejo) <moriya@cpan.org>';
 resources (
     repository
         => 'git://github.com/gardejo/p5-moosex-types-locale-language.git',
@@ -89,7 +89,7 @@ Makefile.PL - Makefile builder for MooseX-Types-Locale-Language
 
 =over 4
 
-=item MORIYA Masaki (a.k.a. "Gardejo")
+=item MORIYA Masaki (a.k.a. Gardejo)
 
 C<< <moriya@cpan.org> >>,
 L<http://ttt.ermitejo.com/>
@@ -98,7 +98,7 @@ L<http://ttt.ermitejo.com/>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (c) 2009 by MORIYA Masaki (a.k.a. "Gardejo"),
+Copyright (c) 2009 by MORIYA Masaki (a.k.a. Gardejo),
 L<http://ttt.ermitejo.com>.
 
 This library is free software;

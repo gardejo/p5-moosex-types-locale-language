@@ -21,7 +21,7 @@ by the following command:
 DEPENDENCIES
 ------------
 
-See C<Makefile.PL>.
+See Makefile.PL.
 
 DESCRIPTION
 -----------
@@ -35,15 +35,16 @@ See further document of this distribution by the following commands:
 AUTHOR
 ------
 
-MORIYA Masaki (a.k.a. "Gardejo")
+MORIYA Masaki (a.k.a. Gardejo)
 
-    <moriya@cpan.org>, http://ttt.ermitejo.com/
+    <moriya at cpan dot org>,
+    http://ttt.ermitejo.com/
 
 COPYRIGHT AND LICENSE
 ---------------------
 
-Copyright (c) 2009 by MORIYA Masaki (a.k.a. "Gardejo"),
-L<http://ttt.ermitejo.com>.
+Copyright (c) 2009 by MORIYA Masaki (a.k.a. Gardejo),
+http://ttt.ermitejo.com
 
 This library is free software;
 you can redistribute it and/or modify it under the same terms as Perl itself.
