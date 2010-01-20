@@ -106,6 +106,17 @@ subtype LanguageName,
 
 
 # ****************************************************************
+# optionally add Getopt option type
+# ****************************************************************
+
+eval { require MooseX::Getopt; };
+if (!$@) {
+    MooseX::Getopt::OptionTypeMap->add_option_type_to_map( $_, '=s', )
+        for (LanguageCode, Alpha2Language, LanguageName);
+}
+
+
+# ****************************************************************
 # return true
 # ****************************************************************
 
@@ -177,6 +188,17 @@ Alias of C<Alpha2Language>.
 A subtype of C<Str>, which should be defined in ISO 639-1 language name.
 
 =back
+
+=head1 NOTE
+
+=head2 The type mapping of L<MooseX::Getopt|MooseX::Getopt>
+
+This module provides the optional type mapping of
+L<MooseX::Getopt|MooseX::Getopt>
+when L<MooseX::Getopt|MooseX::Getopt> was installed.
+
+C<LanguageCode>, C<Alpha2Language> and C<LanguageName> are
+C<String> (C<"=s">) type.
 
 =head1 SEE ALSO
 
