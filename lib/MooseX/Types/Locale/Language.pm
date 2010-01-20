@@ -202,8 +202,9 @@ MooseX::Types::Locale::Language - Locale::Language related constraints and coerc
 
 =head1 DESCRIPTION
 
-This module packages several L<Moose::Util::TypeConstraints> with coercions,
-designed to work with the values of L<Locale::Language>.
+This module packages several
+L<Moose::Util::TypeConstraints|Moose::Util::TypeConstraints> with coercions,
+designed to work with the values of L<Locale::Language|Locale::Language>.
 
 =head1 CONSTRAINTS AND COERCIONS
 
@@ -245,17 +246,17 @@ For example, from C<Alpha2Language> to C<LanguageName>.
 If you want conversion, could you implement an individual language class
 with several attributes?
 
-See see C</examples/complex.pl> in the distribution for more details.
+See C</examples/complex.pl> in the distribution for more details.
 
 =head1 SEE ALSO
 
 =over 4
 
-=item * L<Locale::Language>
+=item * L<Locale::Language|Locale::Language>
 
-=item * L<MooseX::Types::Locale::Language::Fast>
+=item * L<MooseX::Types::Locale::Language::Fast|MooseX::Types::Locale::Language::Fast>
 
-=item * L<MooseX::Types::Locale::Country>
+=item * L<MooseX::Types::Locale::Country|MooseX::Types::Locale::Country>
 
 =back
 
@@ -267,7 +268,7 @@ None reported.
 
 =over 4
 
-=item * I will send patch on L<Locale::Language> to NEILB,
+=item * I will send patch on L<Locale::Language|Locale::Language> to NEILB,
         to solve RT #11730. (The patch supports ISO 639-2 alpha-3
         bibliographic/terminology codes).
         cf. L<http://rt.cpan.org/Public/Bug/Display.html?id=11730>
@@ -275,8 +276,9 @@ None reported.
 =item * By doing this, this module will support ISO 639-2 alpha-3
         bibliographic/terminology codes.
 
-=item * As necessary, L<Locale::Language> and this module may support
-        ISO 639-3 alpha-3 codes (comprehensive coverage of language).
+=item * As necessary, L<Locale::Language|Locale::Language>
+        and this module may support ISO 639-3 alpha-3 codes
+        (comprehensive coverage of language).
 
 =item * I may add grammatical aliases of constraints/coercions.
         For example, C<LanguageAsAlpha2> as existent C<Alpha2Language>.
@@ -296,7 +298,7 @@ No bugs have been reported.
 Please report any found bugs, feature requests, and ideas for improvements
 to C<bug-moosex-types-locale-language at rt.cpan.org>,
 or through the web interface
-at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=MooseX-Types-Locale-Language>.
+at L<http://rt.cpan.org/Public/Bug/Report.html?Queue=MooseX-Types-Locale-Language>.
 I will be notified, and then you'll automatically be notified of progress
 on your bugs/requests as I make changes.
 
@@ -317,7 +319,7 @@ You can also look for information at:
 
 =item RT: CPAN's request tracker
 
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=MooseX-Types-Locale-Language>
+L<http://rt.cpan.org/Public/Bug/Report.html?Queue=MooseX-Types-Locale-Language>
 
 =item AnnoCPAN: Annotated CPAN documentation
 
@@ -329,7 +331,7 @@ L<http://search.cpan.org/dist/MooseX-Types-Locale-Language>
 
 =item CPAN Ratings
 
-L<http://cpanratings.perl.org/d/MooseX-Types-Locale-Language>
+L<http://cpanratings.perl.org/dist/MooseX-Types-Locale-Language>
 
 =back
 
@@ -353,7 +355,7 @@ L<http://ttt.ermitejo.com/>
 =head1 COPYRIGHT AND LICENSE
 
 Copyright (c) 2009 by MORIYA Masaki (a.k.a. Gardejo),
-L<http://ttt.ermitejo.com>.
+L<http://ttt.ermitejo.com/>.
 
 This library is free software;
 you can redistribute it and/or modify it under the same terms as Perl itself.

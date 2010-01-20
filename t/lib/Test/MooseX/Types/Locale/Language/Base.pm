@@ -148,8 +148,9 @@ Test::MooseX::Types::Locale::Language::Base - Testing baseclass for MooseX::Type
 
 =head1 DESCRIPTION
 
-This module tests L<MooseX::Types::Locale::Language> and
-L<MooseX::Types::Locale::Language::Fast>.
+This module tests
+L<MooseX::Types::Locale::Language|MooseX::Types::Locale::Language> and
+L<MooseX::Types::Locale::Language::Fast|MooseX::Types::Locale::Language::Fast>.
 
 =head1 AUTHOR
 
@@ -165,7 +166,7 @@ L<http://ttt.ermitejo.com/>
 =head1 COPYRIGHT AND LICENSE
 
 Copyright (c) 2009 by MORIYA Masaki (a.k.a. Gardejo),
-L<http://ttt.ermitejo.com>.
+L<http://ttt.ermitejo.com/>.
 
 This library is free software;
 you can redistribute it and/or modify it under the same terms as Perl itself.

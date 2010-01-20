@@ -151,11 +151,13 @@ MooseX::Types::Locale::Language::Fast - Locale::Language related constraints for
 
 =head1 DESCRIPTION
 
-This module packages several L<Moose::Util::TypeConstraints>,
-designed to work with the values of L<Locale::Language>.
+This module packages several
+L<Moose::Util::TypeConstraints|Moose::Util::TypeConstraints>,
+designed to work with the values of L<Locale::Language|Locale::Language>.
 
 This module does not provide coercions.
-Therefore, it works faster than L<MooseX::Types::Locale::Language>.
+Therefore, it works faster than
+L<MooseX::Types::Locale::Language|MooseX::Types::Locale::Language>.
 
 =head1 CONSTRAINTS
 
@@ -180,11 +182,11 @@ A subtype of C<Str>, which should be defined in ISO 639-1 language name.
 
 =over 4
 
-=item * L<Locale::Language>
+=item * L<Locale::Language|Locale::Language>
 
-=item * L<MooseX::Types::Locale::Language>
+=item * L<MooseX::Types::Locale::Language|MooseX::Types::Locale::Language>
 
-=item * L<MooseX::Types::Locale::Country::Fast>
+=item * L<MooseX::Types::Locale::Country::Fast|MooseX::Types::Locale::Country::Fast>
 
 =back
 
@@ -205,7 +207,7 @@ No bugs have been reported.
 Please report any found bugs, feature requests, and ideas for improvements
 to C<bug-moosex-types-locale-language at rt.cpan.org>,
 or through the web interface
-at L<http://rt.cpan.org/NoAuth/ReportBug.html?Queue=MooseX-Types-Locale-Language>.
+at L<http://rt.cpan.org/Public/Bug/Report.html?Queue=MooseX-Types-Locale-Language>.
 I will be notified, and then you'll automatically be notified of progress
 on your bugs/requests as I make changes.
 
@@ -226,7 +228,7 @@ You can also look for information at:
 
 =item RT: CPAN's request tracker
 
-L<http://rt.cpan.org/NoAuth/Bugs.html?Dist=MooseX-Types-Locale-Language>
+L<http://rt.cpan.org/Public/Dist/Display.html?Name=MooseX-Types-Locale-Language>
 
 =item AnnoCPAN: Annotated CPAN documentation
 
@@ -238,7 +240,7 @@ L<http://search.cpan.org/dist/MooseX-Types-Locale-Language>
 
 =item CPAN Ratings
 
-L<http://cpanratings.perl.org/d/MooseX-Types-Locale-Language>
+L<http://cpanratings.perl.org/dist/MooseX-Types-Locale-Language>
 
 =back
 
@@ -262,7 +264,7 @@ L<http://ttt.ermitejo.com/>
 =head1 COPYRIGHT AND LICENSE
 
 Copyright (c) 2009 by MORIYA Masaki (a.k.a. Gardejo),
-L<http://ttt.ermitejo.com>.
+L<http://ttt.ermitejo.com/>.
 
 This library is free software;
 you can redistribute it and/or modify it under the same terms as Perl itself.

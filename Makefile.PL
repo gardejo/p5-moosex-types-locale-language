@@ -82,8 +82,8 @@ Makefile.PL - Makefile builder for MooseX-Types-Locale-Language
 
 =head1 SYNOPSIS
 
-    $ cpan -t .
-    $ cpan -i .
+    % cpan -t .
+    % cpan -i .
 
 =head1 AUTHOR
 
@@ -99,7 +99,7 @@ L<http://ttt.ermitejo.com/>
 =head1 COPYRIGHT AND LICENSE
 
 Copyright (c) 2009 by MORIYA Masaki (a.k.a. Gardejo),
-L<http://ttt.ermitejo.com>.
+L<http://ttt.ermitejo.com/>.
 
 This library is free software;
 you can redistribute it and/or modify it under the same terms as Perl itself.

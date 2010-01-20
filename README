@@ -11,12 +11,12 @@ To install this distribution,
 first, to make Makefile, build this distribution and run tests
 by the following command:
 
-    cpan -t .
+    % cpan -t .
 
 next, to deploy this distribution
 by the following command:
 
-    cpan -i .
+    % cpan -i .
 
 DEPENDENCIES
 ------------
@@ -44,7 +44,7 @@ COPYRIGHT AND LICENSE
 ---------------------
 
 Copyright (c) 2009 by MORIYA Masaki (a.k.a. Gardejo),
-http://ttt.ermitejo.com
+http://ttt.ermitejo.com/
 
 This library is free software;
 you can redistribute it and/or modify it under the same terms as Perl itself.
