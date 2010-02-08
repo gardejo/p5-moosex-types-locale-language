@@ -56,8 +56,10 @@ foreach my $subtype (LanguageCode, Alpha2Language) {
                 code2language($_);
             },
             message {
-                "Validation failed for code failed with value ($_) because: " .
-                "Specified language code does not exist in ISO 639-1";
+                sprintf 'Validation failed for code failed with value (%s) '
+                       .'because specified language code does not exist '
+                       . 'in ISO 639-1',
+                    defined $_ ? $_ : q{};
             };
 }
 
@@ -71,9 +73,10 @@ foreach my $subtype (LanguageCode, Alpha2Language) {
 #                 code2language($_, LOCALE_CODE_BIBLIOGRAPHIC);
 #             },
 #             message {
-#                 "Validation failed for code failed with value ($_) because: " .
-#                 "Specified language code does not exist in ISO 639-2/3 " .
-#                 "(bibliographic)";
+#                 sprintf 'Validation failed for code failed with value (%s) '
+#                       . 'because specified language code does not exist '
+#                       . 'in ISO 639-2 (bibliographic)',
+#                     defined $_ ? $_ : q{};
 #             };
 # }
 
@@ -86,9 +89,10 @@ foreach my $subtype (LanguageCode, Alpha2Language) {
 #                 code2language($_, LOCALE_CODE_TERMINOLOGY);
 #         },
 #         message {
-#             "Validation failed for code failed with value ($_) because: " .
-#             "Specified language code does not exist in ISO 639-2/3 " .
-#             "(terminology)";
+#             sprintf 'Validation failed for code failed with value (%s) '
+#                   . 'because specified language code does not exist '
+#                   . 'in ISO 639-2 (terminology)',
+#                 defined $_ ? $_ : q{};
 #         };
 
 # ----------------------------------------------------------------
@@ -100,8 +104,10 @@ subtype LanguageName,
             language2code($_);
         },
         message {
-            "Validation failed for name failed with value ($_) because: " .
-            "Specified language name does not exist in ISO 639";
+            sprintf 'Validation failed for name failed with value (%s) '
+                  . 'because specified language name does not exist '
+                  . 'in ISO 639',
+                defined $_ ? $_ : q{};
         };
 
 

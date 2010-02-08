@@ -24,13 +24,14 @@ use base qw(
 
 use Test::Exception;
 use Test::More;
+use Test::Warn;
 
 
 # ****************************************************************
 # test(s)
 # ****************************************************************
 
-sub test_new : Tests(4) {
+sub test_new : Tests(10) {
     my $self = shift;
 
     my $mock_class = $self->mock_class;
@@ -78,6 +79,12 @@ sub test_exceptions_of_constraints {
             $mock_class->new( $attribute => 'junk!!' )
         } $message_pattern,
             => "Constraint of ($attribute)";
+        warning_is {
+            dies_ok {
+                $mock_class->new( $attribute => undef );
+            } 'expecting to die';
+        } undef,
+            'no warnings to assign undef';
     }
 
     return;
