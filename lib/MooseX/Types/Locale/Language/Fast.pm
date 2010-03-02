@@ -18,13 +18,13 @@ use MooseX::Types::Moose qw(
 );
 use MooseX::Types (
     -declare => [qw(
-        LanguageName
-        Alpha2Language
         LanguageCode
+        Alpha2Language
+        BibliographicLanguage
+        Alpha3Language
+        TerminologicLanguage
+        LanguageName
     )],
-    # (ISO 639-2/3 three letter codes comming soon...)
-    # BibliographicLanguage = Alpha3Language
-    # TerminologyLanguage
 );
 
 
@@ -39,7 +39,7 @@ use namespace::clean;
 # public class variable(s)
 # ****************************************************************
 
-our $VERSION = "0.02";
+our $VERSION = "0.03";
 
 
 # ****************************************************************
@@ -63,37 +63,37 @@ foreach my $subtype (LanguageCode, Alpha2Language) {
             };
 }
 
-# # ----------------------------------------------------------------
-# # language code as defined in ISO 639-2 (alpha-3 bibliographic)
-# # ----------------------------------------------------------------
-# foreach my $subtype (Alpha3Language, BibliographicLanguage) {
-#     subtype $subtype,
-#         as Str,
-#             where {
-#                 code2language($_, LOCALE_CODE_BIBLIOGRAPHIC);
-#             },
-#             message {
-#                 sprintf 'Validation failed for code failed with value (%s) '
-#                       . 'because specified language code does not exist '
-#                       . 'in ISO 639-2 (bibliographic)',
-#                     defined $_ ? $_ : q{};
-#             };
-# }
+# ----------------------------------------------------------------
+# language code as defined in ISO 639-2 (alpha-3 bibliographic)
+# ----------------------------------------------------------------
+foreach my $subtype (Alpha3Language, BibliographicLanguage) {
+    subtype $subtype,
+        as Str,
+            where {
+                code2language($_, LOCALE_LANG_ALPHA_3);
+            },
+            message {
+                sprintf 'Validation failed for code failed with value (%s) '
+                      . 'because specified language code does not exist '
+                      . 'in ISO 639-2 (bibliographic)',
+                    defined $_ ? $_ : q{};
+            };
+}
 
-# # ----------------------------------------------------------------
-# # language code as defined in ISO 639-2 (alpha-3 terminology)
-# # ----------------------------------------------------------------
-# subtype TerminologyLanguage,
-#     as Str,
-#         where {
-#                 code2language($_, LOCALE_CODE_TERMINOLOGY);
-#         },
-#         message {
-#             sprintf 'Validation failed for code failed with value (%s) '
-#                   . 'because specified language code does not exist '
-#                   . 'in ISO 639-2 (terminology)',
-#                 defined $_ ? $_ : q{};
-#         };
+# ----------------------------------------------------------------
+# language code as defined in ISO 639-2 (alpha-3 terminologic)
+# ----------------------------------------------------------------
+subtype TerminologicLanguage,
+    as Str,
+        where {
+                code2language($_, LOCALE_LANG_TERM);
+        },
+        message {
+            sprintf 'Validation failed for code failed with value (%s) '
+                  . 'because specified language code does not exist '
+                  . 'in ISO 639-2 (terminology)',
+                defined $_ ? $_ : q{};
+        };
 
 # ----------------------------------------------------------------
 # language name as defined in ISO 639
@@ -188,6 +188,20 @@ alpha-2.
 =item C<LanguageCode>
 
 Alias of C<Alpha2Language>.
+
+=item C<BibliographicLanguage>
+
+A subtype of C<Str>, which should be defined in language code of ISO 639-2/B
+alpha-3.
+
+=item C<Alpha3Language>
+
+Alias of C<BibliographicLanguage>.
+
+=item C<TerminologicLanguage>
+
+A subtype of C<Str>, which should be defined in language code of ISO 639-2/T
+alpha-3.
 
 =item C<LanguageName>
 

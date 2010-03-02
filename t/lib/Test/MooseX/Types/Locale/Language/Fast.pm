@@ -37,6 +37,9 @@ use Test::More;
     use MooseX::Types::Locale::Language::Fast qw(
         LanguageCode
         Alpha2Language
+        BibliographicLanguage
+        Alpha3Language
+        TerminologicLanguage
         LanguageName
     );
 
@@ -46,12 +49,12 @@ use Test::More;
         => ( is => 'rw', isa => LanguageCode);
     has 'alpha2'
         => ( is => 'rw', isa => Alpha2Language);
-    # has 'alpha3'
-    #     => ( is => 'rw', isa => Alpha3Language);
-    # has 'bibliographic'
-    #     => ( is => 'rw', isa => BibliographicLanguage);
-    # has 'terminology'
-    #     => ( is => 'rw', isa => TerminologyLanguage);
+    has 'alpha3'
+        => ( is => 'rw', isa => Alpha3Language);
+    has 'bibliographic'
+        => ( is => 'rw', isa => BibliographicLanguage);
+    has 'terminologic'
+        => ( is => 'rw', isa => TerminologicLanguage);
     has 'name'
         => ( is => 'rw', isa => LanguageName);
 
@@ -71,7 +74,7 @@ sub test_use : Tests(1) {
     return;
 }
 
-sub test_coerce_code : Tests(3) {
+sub test_coerce_code : Tests(6) {
     my $self = shift;
 
     my $mock_instance = $self->mock_instance;
@@ -80,12 +83,12 @@ sub test_coerce_code : Tests(3) {
         ('code',          $mock_instance, 'JA');
     $self->test_coercion_for
         ('alpha2',        $mock_instance, 'JA');
-    # $self->test_coercion_for
-    #     ('alpha3',        $mock_instance, 'JPN');
-    # $self->test_coercion_for
-    #     ('bibliographic', $mock_instance, 'DUT');
-    # $self->test_coercion_for
-    #     ('terminology',   $mock_instance, 'NLD');
+    $self->test_coercion_for
+        ('alpha3',        $mock_instance, 'JPN');
+    $self->test_coercion_for
+        ('bibliographic', $mock_instance, 'CHI');   # Chinese
+    $self->test_coercion_for
+        ('terminologic',  $mock_instance, 'ZHO');   # Zhongwen
     $self->test_coercion_for
         ('name',          $mock_instance, 'JAPANESE');
 

@@ -31,7 +31,7 @@ use Test::Warn;
 # test(s)
 # ****************************************************************
 
-sub test_new : Tests(10) {
+sub test_new : Tests(19) {
     my $self = shift;
 
     my $mock_class = $self->mock_class;
@@ -53,9 +53,9 @@ sub test_constraint {
     ok $mock_class->new(
         code            => 'ja',
         alpha2          => 'ja',
-        # alpha3        => 'jpn',
-        # bibliographic => 'jpn',
-        # terminology   => 'jpn',
+        alpha3          => 'jpn',
+        bibliographic   => 'chi',   # Chinese
+        terminologic    => 'zho',   # Zhongwen
         name            => 'Japanese',
     ) => 'Instantiated object using export types';
 
@@ -68,9 +68,9 @@ sub test_exceptions_of_constraints {
     my %alignment = (
         code            => qr{language code .+ ISO 639-1},
         alpha2          => qr{language code .+ ISO 639-1},
-        # alpha3        => qr{language code .+ ISO 639-2},
-        # bibliographic => qr{language code .+ ISO 639-2},
-        # terminology   => qr{language code .+ ISO 639-2},
+        alpha3          => qr{language code .+ ISO 639-2},
+        bibliographic   => qr{language code .+ ISO 639-2},
+        terminologic    => qr{language code .+ ISO 639-2},
         name            => qr{language name .+ ISO 639},
     );
 
@@ -113,11 +113,11 @@ sub test_coercion_for {
     $mock_instance->$attribute($from);
 
     if (defined $to) {
-        ok $mock_instance->$attribute eq $to
+        is $mock_instance->$attribute, $to
             => "Coercion of ($attribute)";
     }
     else {
-        ok $mock_instance->$attribute eq $from
+        is $mock_instance->$attribute, $from
             => "Coercion of ($attribute) does not work";
     }
 

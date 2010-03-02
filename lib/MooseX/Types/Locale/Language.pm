@@ -20,11 +20,11 @@ use MooseX::Types (
     -declare => [qw(
         LanguageCode
         Alpha2Language
+        BibliographicLanguage
+        Alpha3Language
+        TerminologicLanguage
         LanguageName
     )],
-    # (ISO 639-2 three letter codes comming soon...)
-    # BibliographicLanguage = Alpha3Language
-    # TerminologyLanguage
 );
 
 
@@ -39,7 +39,7 @@ use namespace::clean;
 # public class variable(s)
 # ****************************************************************
 
-our $VERSION = "0.02";
+our $VERSION = "0.03";
 
 
 # ****************************************************************
@@ -50,11 +50,11 @@ our $VERSION = "0.02";
 my %alpha2;
 @alpha2{ all_language_codes() } = ();
 
-# my %bibliographic;
-# @bibliographic{ all_language_codes(LOCALE_CODE_BIBLIOGRAPHIC) } = ();
+my %bibliographic;
+@bibliographic{ all_language_codes(LOCALE_LANG_ALPHA_3) } = ();
 
-# my %terminology;
-# @terminology{ all_language_codes(LOCALE_CODE_TERMINOLOGY) } = ();
+my %terminologic;
+@terminologic{ all_language_codes(LOCALE_LANG_TERM) } = ();
 
 # Because code2language($_) cannot coerce 'JA' to 'ja'.
 my %name;
@@ -90,51 +90,51 @@ foreach my $subtype (LanguageCode, Alpha2Language) {
             };
 }
 
-# # ----------------------------------------------------------------
-# # language code as defined in ISO 639-2 (alpha-3 bibliographic)
-# # ----------------------------------------------------------------
-# foreach my $subtype (Alpha3Language, BibliographicLanguage) {
-#     subtype $subtype,
-#         as Str,
-#             where {
-#                 exists $bibliographic{$_};
-#             },
-#             message {
-#                 sprintf 'Validation failed for code failed with value (%s) '
-#                       . 'because specified language code does not exist '
-#                       . 'in ISO 639-2 (bibliographic)',
-#                     defined $_ ? $_ : q{};
-#             };
-# 
-#     coerce $subtype,
-#         from Str,
-#             via {
-#                 # Converts 'ENG' into 'eng'.
-#                 return lc $_;
-#             };
-# }
+# ----------------------------------------------------------------
+# language code as defined in ISO 639-2 (alpha-3 bibliographic)
+# ----------------------------------------------------------------
+foreach my $subtype (Alpha3Language, BibliographicLanguage) {
+    subtype $subtype,
+        as Str,
+            where {
+                exists $bibliographic{$_};
+            },
+            message {
+                sprintf 'Validation failed for code failed with value (%s) '
+                      . 'because specified language code does not exist '
+                      . 'in ISO 639-2 (bibliographic)',
+                    defined $_ ? $_ : q{};
+            };
 
-# # ----------------------------------------------------------------
-# # language code as defined in ISO 639-2 (alpha-3 terminology)
-# # ----------------------------------------------------------------
-# subtype TerminologyLanguage,
-#     as Str,
-#         where {
-#             exists $terminology{$_};
-#         },
-#         message {
-#             sprintf 'Validation failed for code failed with value (%s) '
-#                   . 'because specified language code does not exist '
-#                   . 'in ISO 639-2 (terminology)',
-#                 defined $_ ? $_ : q{};
-#         };
-# 
-# coerce TerminologyLanguage,
-#     from Str,
-#         via {
-#             # Converts 'ENG' into 'eng'.
-#             return lc $_;
-#         };
+    coerce $subtype,
+        from Str,
+            via {
+                # Converts 'ENG' into 'eng'.
+                return lc $_;
+            };
+}
+
+# ----------------------------------------------------------------
+# language code as defined in ISO 639-2 (alpha-3 terminologic)
+# ----------------------------------------------------------------
+subtype TerminologicLanguage,
+    as Str,
+        where {
+            exists $terminologic{$_};
+        },
+        message {
+            sprintf 'Validation failed for code failed with value (%s) '
+                  . 'because specified language code does not exist '
+                  . 'in ISO 639-2 (terminologic)',
+                defined $_ ? $_ : q{};
+        };
+
+coerce TerminologicLanguage,
+    from Str,
+        via {
+            # Converts 'ENG' into 'eng'.
+            return lc $_;
+        };
 
 # ----------------------------------------------------------------
 # language name as defined in ISO 639
@@ -238,6 +238,24 @@ For example, C<'JA'> will convert to C<'ja'>.
 
 Alias of C<Alpha2Language>.
 
+=item C<BibliographicLanguage>
+
+A subtype of C<Str>, which should be defined in language code of ISO 639-2/B
+alpha-3.
+If you turned C<coerce> on, C<Str> will be lower-case.
+For example, C<'CHI'> will convert to C<'chi'>.
+
+=item C<Alpha3Language>
+
+Alias of C<BibliographicLanguage>.
+
+=item C<TerminologicLanguage>
+
+A subtype of C<Str>, which should be defined in language code of ISO 639-2/T
+alpha-3.
+If you turned C<coerce> on, C<Str> will be lower-case.
+For example, C<'ZHO'> will convert to C<'zho'>.
+
 =item C<LanguageName>
 
 A subtype of C<Str>, which should be defined in ISO 639-1 language name.
@@ -293,18 +311,6 @@ None reported.
 =head1 TO DO
 
 =over 4
-
-=item * I will send patch on L<Locale::Language|Locale::Language> to NEILB,
-        to solve RT #11730. (The patch supports ISO 639-2 alpha-3
-        bibliographic/terminology codes).
-        cf. L<http://rt.cpan.org/Public/Bug/Display.html?id=11730>
-
-=item * By doing this, this module will support ISO 639-2 alpha-3
-        bibliographic/terminology codes.
-
-=item * As necessary, L<Locale::Language|Locale::Language>
-        and this module may support ISO 639-3 alpha-3 codes
-        (comprehensive coverage of language).
 
 =item * I may add grammatical aliases of constraints/coercions.
         For example, C<LanguageAsAlpha2> as existent C<Alpha2Language>.
