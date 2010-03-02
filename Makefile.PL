@@ -36,7 +36,7 @@ build_requires  'Module::Load'          => '0';     # > perl 5.009_004
 # ================================================================
 # general dependencies
 # ================================================================
-  requires      'Locale::Language'      => '3.00'; # for Alpha-3 coes
+  requires      'Locale::Language'      => '3.00'; # for Alpha-3 codes
   requires      'Moose'                 => '0.41'; # cf. MX-Types-DateTime
   requires      'MooseX::Types'         => '0.19'; # cf. MX-Types-DateTime
   requires      'namespace::clean'      => '0.08'; # cf. MX-Types-DateTime
