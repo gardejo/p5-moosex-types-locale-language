@@ -5,19 +5,31 @@ This file documents the revision history for Perl distribution
 VERSION HISTORY
 ===============
 
-0.0101 : Released on 2009-10-XX (JST)
--------------------------------------
+0.02 : Released on 2009-03-03 (JST)
+-----------------------------------
+
+### Features
+
+#### `MooseX::Types::Locale::Language` and `MooseX::Types::Locale::Language::Fast`
+
+-   Added type mapping for `MooseX::Getopt`.
+
+### Bug fixes
+
+#### `MooseX::Types::Locale::Language` and `MooseX::Types::Locale::Language::Fast`
+
+-   No warnings to assign undefined value.
 
 ### Documents
+
+#### `Changes`
+
+-   Modified version notation to explain guide of upgrade.
 
 #### `MooseX::Types::Locale::Language`
 
 -   Refered to `/examples/complex.pl` to explain that code conversion is not
     supported.
-
-#### `Changes`
-
--   Modified version notation to explain guide of upgrade.
 
 ### Others
 
