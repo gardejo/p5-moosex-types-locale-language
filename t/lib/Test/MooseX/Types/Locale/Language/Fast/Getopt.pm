@@ -10,19 +10,22 @@ use warnings;
 
 
 # ****************************************************************
+# general dependency(-ies)
+# ****************************************************************
+
+use Test::More;
+use Test::Requires {
+    'MooseX::Getopt' => 0,
+};
+
+
+# ****************************************************************
 # superclass(es)
 # ****************************************************************
 
 use base qw(
     Test::MooseX::Types::Locale::Language::Base::Getopt
 );
-
-
-# ****************************************************************
-# general dependency(-ies)
-# ****************************************************************
-
-use Test::More;
 
 
 # ****************************************************************
@@ -111,7 +114,7 @@ L<http://ttt.ermitejo.com/>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (c) 2009 by MORIYA Masaki (a.k.a. Gardejo),
+Copyright (c) 2009-2010 by MORIYA Masaki (a.k.a. Gardejo),
 L<http://ttt.ermitejo.com/>.
 
 This library is free software;

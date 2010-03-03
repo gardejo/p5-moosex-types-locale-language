@@ -47,6 +47,7 @@ build_requires  'Module::Load'          => '0';     # > perl 5.009_004
   test_requires 'Test::Class'           => '0';    # without intention
   test_requires 'Test::Exception'       => '0.27'; # cf. MX-Types-DateTime
   test_requires 'Test::More'            => '0';    # without intention
+  test_requires 'Test::Requires'        => '0';    # without intention
   test_requires 'Test::Warn'            => '0';    # without intention
 
 # ================================================================
@@ -98,7 +99,7 @@ L<http://ttt.ermitejo.com/>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (c) 2009 by MORIYA Masaki (a.k.a. Gardejo),
+Copyright (c) 2009-2010 by MORIYA Masaki (a.k.a. Gardejo),
 L<http://ttt.ermitejo.com/>.
 
 This library is free software;

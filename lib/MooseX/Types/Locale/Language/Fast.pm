@@ -39,7 +39,7 @@ use namespace::clean;
 # public class variable(s)
 # ****************************************************************
 
-our $VERSION = "0.03";
+our $VERSION = "0.04";
 
 
 # ****************************************************************
@@ -172,7 +172,7 @@ This module packages several
 L<Moose::Util::TypeConstraints|Moose::Util::TypeConstraints>,
 designed to work with the values of L<Locale::Language|Locale::Language>.
 
-This module does not provide coercions.
+This module does not provide you coercions.
 Therefore, it works faster than
 L<MooseX::Types::Locale::Language|MooseX::Types::Locale::Language>.
 
@@ -288,7 +288,7 @@ L<http://cpanratings.perl.org/dist/MooseX-Types-Locale-Language>
 
 =head1 VERSION CONTROL
 
-This module is maintained using git.
+This module is maintained using I<git>.
 You can get the latest version from
 L<git://github.com/gardejo/p5-moosex-types-locale-language.git>.
 
@@ -305,7 +305,7 @@ L<http://ttt.ermitejo.com/>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (c) 2009 by MORIYA Masaki (a.k.a. Gardejo),
+Copyright (c) 2009-2010 by MORIYA Masaki (a.k.a. Gardejo),
 L<http://ttt.ermitejo.com/>.
 
 This library is free software;

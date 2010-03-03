@@ -10,21 +10,21 @@ use warnings;
 
 
 # ****************************************************************
-# superclass(es)
-# ****************************************************************
-
-use base qw(
-    Test::Class
-);
-
-
-# ****************************************************************
 # general dependency(-ies)
 # ****************************************************************
 
 use Test::Exception;
 use Test::More;
 use Test::Warn;
+
+
+# ****************************************************************
+# superclass(es)
+# ****************************************************************
+
+use base qw(
+    Test::Class
+);
 
 
 # ****************************************************************
@@ -172,7 +172,7 @@ L<http://ttt.ermitejo.com/>
 
 =head1 COPYRIGHT AND LICENSE
 
-Copyright (c) 2009 by MORIYA Masaki (a.k.a. Gardejo),
+Copyright (c) 2009-2010 by MORIYA Masaki (a.k.a. Gardejo),
 L<http://ttt.ermitejo.com/>.
 
 This library is free software;
