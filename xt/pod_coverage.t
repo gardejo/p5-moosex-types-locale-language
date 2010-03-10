@@ -1,17 +1,31 @@
-#!perl -T
-
+use Test::Requires {
+    'Test::Pod::Coverage' => 1.08,
+};
 eval {
-    require Test::Pod::Coverage;
-    Test::Pod::Coverage->import;
-    die if Test::Pod::Coverage->VERSION < 1.08;
+    require 'Test::Pod::Coverage';  # a bad know-how: to pass Test::Kwalitee
 };
 
-Test::More::plan( skip_all =>
-    "Test::Pod::Coverage 1.08 required " .
-    "for testing POD coverage"
-) if $@;
+all_pod_coverage_ok(
+    {
+        also_private => [qw(
+            BUILDARGS
+            BUILD
+            DEMOLISH
+        )],
+    },
+);
 
-all_pod_coverage_ok('lib');
+__END__
 
-# note: Devel::Cover and Attribute::Protected and Test::Pod::Coverage
-#       are incompatible?
+=pod
+
+=head1 NAME
+
+pod_coverage.t - testing coverage of a test
+
+=head1 NOTE
+
+Is L<Test::Pod::Coverage|Test::Pod::Coverage> incompatible with
+L<Devel::Cover|Devel::Cover> and L<Attribute::Protected|Attribute::Protected> ?
+
+=cut
