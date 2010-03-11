@@ -12,7 +12,7 @@ VERSION HISTORY
 
 #### Tests
 
--   Made test skip itself 
+-   Made test skip itself
     when `MooseX::Getopt` is not installed in tester's environment.
 
 
