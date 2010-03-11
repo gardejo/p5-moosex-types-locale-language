@@ -1,112 +1,91 @@
-#!/usr/bin/perl
-
-use strict;
-use warnings;
-
-use inc::Module::Install;
-
-my $application_root_module = 'lib/MooseX/Types/Locale/Language.pm';
+use inc::Module::Install 0.95;
+use Module::Install::AuthorRequires;
+use Module::Install::AuthorTests;
 
 # ================================================================
-# meta information
+# gathering meta information
 # ================================================================
-# abstract, author, license, name, perl_version, version
-all_from        $application_root_module;
+    # abstract, author, license, name, perl_version(5.008_001), version
+    all_from        'lib/MooseX/Types/Locale/Language.pm';
 
-# supplement
-author          'MORIYA Masaki (a.k.a. Gardejo) <moriya at cpan dot org>';
-resources (
-    repository
-        => 'git://github.com/gardejo/p5-moosex-types-locale-language.git',
-    bugtracker
-        => 'http://rt.cpan.org/Public/Dist/Display.html?Name='
-         . 'MooseX-Types-Locale-Language',
-    homepage
-        => 'http://github.com/gardejo/p5-moosex-types-locale-language',
-);
-no_index directory => 'examples';
-# no_index directory => 'extlib';
-
-# ================================================================
-# build dependencies
-# ================================================================
-build_requires  'Module::Install'       => '0.80';  # YAML::Tiny problem
-build_requires  'Module::Load'          => '0';     # > perl 5.009_004
+    # supplements
+    author          'MORIYA Masaki, alias Gardejo <moriya at cpan dot org>';
+    resources (
+        repository
+            => 'git://github.com/gardejo/p5-moosex-types-locale-language.git',
+        # (implicit assignment)
+        # bugtracker
+        #     => 'http://rt.cpan.org/Public/Dist/Display.html?Name='
+        #      . 'MooseX-Types-Locale-Language',
+        homepage
+            => 'http://github.com/gardejo/p5-moosex-types-locale-language',
+    );
+    no_index directory => 'examples';
+#   no_index directory => 'extlib';
 
 # ================================================================
-# general dependencies
+# build dependency(-ies)
 # ================================================================
-  requires      'Locale::Language'      => '3.00'; # for Alpha-3 codes
-  requires      'Moose'                 => '0.41'; # cf. MX-Types-DateTime
-  requires      'MooseX::Types'         => '0.19'; # cf. MX-Types-DateTime
-  requires      'namespace::clean'      => '0.08'; # cf. MX-Types-DateTime
+#   build_requires  'Module::Install'                   => '0.80';
+        # to avoid YAML::Tiny problem
+#   build_requires  'Module::Load'                      => '0';
+        # is in perl 5.009_004
 
 # ================================================================
-# dependencies for tests
+# general dependency(-ies)
 # ================================================================
-  test_requires 'Test::Class'           => '0';    # without intention
-  test_requires 'Test::Exception'       => '0.27'; # cf. MX-Types-DateTime
-  test_requires 'Test::More'            => '0';    # without intention
-  test_requires 'Test::Requires'        => '0';    # without intention
-  test_requires 'Test::Warn'            => '0';    # without intention
+    requires        'Locale::Language'                  => '3.00';
+        # for Alpha-3 codes
+    requires        'Moose'                             => '0.41';
+        # cf. MX-Types-DateTime
+    requires        'MooseX::Types'                     => '0.19';
+        # cf. MX-Types-DateTime
+    requires        'namespace::clean'                  => '0.08';
+        # cf. MX-Types-DateTime
 
 # ================================================================
-# tests
+# test dependency(-ies)
 # ================================================================
-use_test_base;
-  tests         't/*.t';
-  author_tests  'xt';
+    test_requires   'Test::Class'                       => '0.34';
+    test_requires   'Test::Exception'                   => '0.27';
+        # cf. MX-Types-DateTime
+    test_requires   'Test::More'                        => '0';
+    test_requires   'Test::Requires'                    => '0';
+    test_requires   'Test::Warn'                        => '0';
+
+# ================================================================
+# author dependency(-ies)
+# ================================================================
+    author_requires 'Perl::Critic'                      => '0.094';
+    author_requires 'Test::CPAN::Meta'                  => '0.12';
+#   author_requires 'Test::Kwalitee'                    => '0';
+        # always die (but xt/kwalitee.t need it)
+    author_requires 'Test::NoTabs'                      => '0';
+    author_requires 'Test::Perl::Critic'                => '0';
+    author_requires 'Test::Pod'                         => '1.40';
+    author_requires 'Test::Pod::Coverage'               => '1.08';
+    author_requires 'Test::Synopsis'                    => '0.06';
+    author_requires 'Test::UseAllModules'               => '0';
+
+# ================================================================
+# test(s)
+# ================================================================
+    tests                   't/*.t';
+    recursive_author_tests  'xt';
+
+# ================================================================
+# including
+# ================================================================
+    auto_include_deps;
+    # 'auto_include' grabs only immediate dependencies
 
 # ================================================================
 # installation
 # ================================================================
-auto_include;
-auto_install;
+#   auto_install;
+    # 'auto_include' is deprecated
 
 # ================================================================
-# META.yml writter
+# writter
 # ================================================================
-WriteAll;
-
-__END__
-
-
-# ****************************************************************
-# POD
-# ****************************************************************
-
-=pod
-
-=head1 NAME
-
-Makefile.PL - Makefile builder for MooseX-Types-Locale-Language
-
-=head1 SYNOPSIS
-
-    % cpan -t .
-    % cpan -i .
-
-=head1 AUTHOR
-
-=over 4
-
-=item MORIYA Masaki (a.k.a. Gardejo)
-
-C<< <moriya at cpan dot org> >>,
-L<http://ttt.ermitejo.com/>
-
-=back
-
-=head1 COPYRIGHT AND LICENSE
-
-Copyright (c) 2009-2010 by MORIYA Masaki (a.k.a. Gardejo),
-L<http://ttt.ermitejo.com/>.
-
-This library is free software;
-you can redistribute it and/or modify it under the same terms as Perl itself.
-See L<perlgpl|perlgpl> and L<perlartistic|perlartistic>.
-
-The full text of the license can be found in the F<LICENSE> file
-included with this distribution.
-
-=cut
+    WriteAll;
