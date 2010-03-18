@@ -5,10 +5,7 @@ use Module::Install::AuthorTests;
 # ================================================================
 # gathering meta information
 # ================================================================
-    # abstract, author, license, name, perl_version(5.008_001), version
-    all_from        'lib/MooseX/Types/Locale/Language.pm';
-
-    # supplements
+    # individual gathering
     author          'MORIYA Masaki, alias Gardejo <moriya at cpan dot org>';
     resources (
         repository
@@ -20,6 +17,11 @@ use Module::Install::AuthorTests;
         homepage
             => 'http://github.com/gardejo/p5-moosex-types-locale-language',
     );
+
+    # the rest of information
+    # abstract, author, license, name, perl_version(5.008_001), version
+    all_from        'lib/MooseX/Types/Locale/Language.pm';
+
     no_index directory => 'examples';
 #   no_index directory => 'extlib';
 
