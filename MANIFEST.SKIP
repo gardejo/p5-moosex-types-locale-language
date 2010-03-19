@@ -1,3 +1,10 @@
+# Avoid coverage verifier
+coverage.bat
+coverage.sh
+
+# Avoid Test::Kwalitee related files.
+Debian_CPANTS.txt
+
 # This MANIFEST.SKIP file was stolen from MooseX-Types-DateTime
 
 # Avoid version control files.
