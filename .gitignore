@@ -9,6 +9,7 @@ inc
 pm_to_blib
 MANIFEST*
 !MANIFEST.SKIP
-MooseX-Types-Locale-Language-*
 *.bs
 cover_db
+Debian_CPANTS.txt
+MooseX-Types-Locale-Language-*
